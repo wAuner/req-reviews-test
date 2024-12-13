@@ -31,4 +31,4 @@ jobs:
             paths:
                 - 'code/**'
             teams:
-                - '@wAuner'
+                - @wAuner
