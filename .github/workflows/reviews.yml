@@ -1,0 +1,28 @@
+name: Required Reviews
+
+on:
+    pull_request:
+      branches:
+        - '*'
+    workflow_dispatch:
+
+jobs:
+  # https://github.com/marketplace/actions/required-review
+  reviewcheck:
+    name: Checking required reviews
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        lfs: true
+    - uses: Automattic/action-required-review@v3
+      with:
+        token: ${{ secrets.REQUIRED_REVIEWS_CLIENT_SECRET }}
+        request-reviews: true
+        requirements: |
+          - name: Staff
+            paths:
+                - 'code/**'
+            teams:
+                - '@wAuner'
